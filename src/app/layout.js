@@ -4,6 +4,7 @@ import "keen-slider/keen-slider.min.css"
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Player from "@/components/track/Player";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Player />
+      </body>
     </html>
   );
 }

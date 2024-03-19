@@ -1,12 +1,11 @@
 'use client'
-
-import ReactSlick from "@/components/ReactSlick";
-import { useState, lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 
 const KeenSliderContent = lazy(() => import("@/components/KeenSliderContent"));
 const WaveSurferContent = lazy(() => import("@/components/WaveSurferContent"));
 const ZustandContent = lazy(() => import("@/components/ZustandContent"));
 const TailwindContent = lazy(() => import("@/components/TailwindContent"));
+const ReactSlick = lazy(() => import("@/components/ReactSlick"));
 
 
 export default function Home() {

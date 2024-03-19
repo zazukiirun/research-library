@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { useStore } from "@/stores/store";
+import { zustandStore } from "@/stores/store";
 
 
 
 function ZustandContent() {
 
-  const { couterNumber, counterPerist } = useStore()
+  const { couterNumber, counterPerist } = zustandStore()
 
   const { number, counter, clearCouter } = couterNumber()
   const { number: numberPersist, counter: counterPersist, clearCouter: clearCouterPersist } = counterPerist()

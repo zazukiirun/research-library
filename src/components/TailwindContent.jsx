@@ -9,6 +9,20 @@ function TailwindContent() {
       </div>
 
       <Divivder />
+      <div className="text-sky-200 underline-offset-1 underline text-center">Flex & Shrink</div>
+      <div class="flex justify-center">
+        <div class="flex-1 w-14 h-14 bg-purple-300 rounded-lg drop-shadow-4xl">
+          01
+        </div>
+        <div class="shrink-0 w-64 h-14 bg-purple-300 rounded-lg drop-shadow-4xl">
+          02
+        </div>
+        <div class="flex-1 w-14 h-14 bg-purple-300 rounded-lg drop-shadow-4xl">
+          03
+        </div>
+      </div>
+
+      <Divivder />
 
       <div className="text-sky-200 underline-offset-1 underline text-center">Grid Cols Start/End</div>
       <div class="grid grid-cols-6 gap-4">

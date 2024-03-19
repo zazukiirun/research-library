@@ -57,7 +57,7 @@ function ReactSlickCustomized({
           // }
           >
             {[... new Array(10)].map((_, index) => (
-              <div className={`h-[400px] bg-black px-6`}>
+              <div key={index} className={`h-[400px] bg-black px-6`}>
                 <div className={`${bg || 'bg-sky-400'} h-full w-full text-center color-[#fff] font-bold`}>
                   {index + 1}
                 </div>
