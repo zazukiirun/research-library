@@ -1,3 +1,32 @@
+# Daft Develop Research Library
+
+Welcome to the Daft Develop research library! This repository is a Next.js project aimed at exploring various technologies such as React components (`react-slick`, `keen-slider`), state management (`zustand`), audio visualization (`wavesurfer.js`), and utility-first CSS framework (`tailwind`).
+
+```bash
+
+Technologies Used
+1. React Slick
+React Slick is a carousel component built with React. It is easy to use and customizable, making it perfect for creating sliders and carousels in React applications.
+
+2. Keen Slider
+Keen Slider is a lightweight (less than 10kb gzipped) slider library with a focus on performance and flexibility. It offers smooth transitions and touch support out of the box.
+
+3. Zustand
+Zustand is a minimalistic yet powerful state management library for React. It provides a simple API for managing global state in your application without the need for complex setups like Redux.
+
+4. WaveSurfer.js
+WaveSurfer.js is a customizable audio visualization library that can be used to create interactive audio waveforms. It supports various audio formats and offers features like zooming, panning, and waveform styling.
+
+5. Tailwind CSS
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes for building custom designs without writing custom CSS. It promotes a highly responsive and scalable design system.
+
+Contributing
+Contributions to this project are welcome! Feel free to submit bug reports, feature requests, or pull requests. Please follow our contribution guidelines when contributing to this project.
+
+License
+This project is licensed under the MIT License.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
