@@ -12,10 +12,10 @@ const options = {
   // barGap: 0.5,
 };
 
-const useWavesurfer = (waveContainerRef, audioSrc, onFinish) => {
+const useWavesurfer = (waveContainerRef, audioSrc, onFinish, getDuration, getCurrentTime) => {
   const waveSurferRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioVolume, setAudioVolume] = useState({ isMuted: false, value: 1, });
+  const [audioVolume, setAudioVolume] = useState({ isMuted: false, value: 0.2, });
 
   useEffect(() => {
     waveSurferRef.current = WaveSurfer.create({
@@ -28,6 +28,12 @@ const useWavesurfer = (waveContainerRef, audioSrc, onFinish) => {
     waveSurferRef.current.on('play', () => setIsPlaying(true));
     waveSurferRef.current.on('pause', () => setIsPlaying(false));
     waveSurferRef.current.on('finish', () => onFinish());
+
+    waveSurferRef.current.on('loading', (percent) => console.log(percent));
+
+    waveSurferRef.current.on('audioprocess', (currentTime) => getCurrentTime(currentTime));
+
+    waveSurferRef.current.on('ready', (currentTime) => getDuration(currentTime));
 
     waveSurferRef.current.setVolume(audioVolume.isMuted ? 0 : audioVolume.value);
 

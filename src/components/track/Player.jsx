@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import useWavesurfer from '@/hooks/useWaveSurfer';
 import VolumeSlider from './VolumeSlider';
 import { formatDuration } from '@/utils/formatters';
@@ -11,6 +11,10 @@ const Player = () => {
 
     const waveContainerRef = useRef(null);
 
+    const [duration, setDuration] = useState(0)
+    const [currentTimeAudio, setCurrentTimeAudio] = useState(0)
+
+    const [showMobilePlayer, setShowMobilePlayer] = useState(false)
 
     const { useSongsStore } = zustandStore()
 
@@ -22,8 +26,12 @@ const Player = () => {
         activeEntity
 
     } = useSongsStore()
-    
-    let album, title, artist, audioSrc, duration;
+
+    let album,
+        title,
+        artist,
+        audioSrc
+    // duration;
 
     if (entities[activeEntity]) {
         ({
@@ -31,32 +39,38 @@ const Player = () => {
             title,
             artist,
             preview: audioSrc,
-            duration
+            // duration
         } = entities[activeEntity]);
     }
 
-    const { handlePlayPause, isPlaying, setAudioVolume, audioVolume } = useWavesurfer(waveContainerRef, audioSrc, () => dispatch(playNextSong()));
+    const { handlePlayPause, isPlaying, setAudioVolume, audioVolume } = useWavesurfer(
+        waveContainerRef,
+        audioSrc,
+        () => playNextSong(),
+        (durationAudio) => setDuration(durationAudio),
+        (currentTime) => setCurrentTimeAudio(currentTime),
+    );
 
     const formattedDuration = formatDuration(duration);
-
+    const formattedCurrent = formatDuration(currentTimeAudio);
 
     return (
         <>
             <div className={`flex h-[5vh] mx-0 my-auto items-center ${audioSrc ? '' : ' color-[#CBD5E0]'}`}>
-                <img className={`${audioSrc ? '' : 'invisible'}`} src={album?.image} alt='' />
+                <img className={`${audioSrc ? 'rounded-sm' : 'invisible'}`} src={album?.cover} alt='' />
 
                 <div className='w-[16.5%]'>
                     <span className='color-[#fff] text-[0.9em] line-clamp-2'>{title}</span>
                     <span className='artist-name'>{artist?.name}</span>
                 </div>
 
-                <div className='flex gap-1/4 md:ml-6 ml-[0.5em] justify-center '>
+                <div className='flex gap-4 md:ml-6 ml-[0.5em] justify-center'>
                     <button onClick={() => playPreviousSong()}>
                         <MdSkipPrevious />
                     </button>
 
                     <button
-                        className='p-1.5 rounded-full bg-blue-700'
+                        className='p-1.5 rounded-full bg-sky-700'
                         onClick={audioSrc && handlePlayPause}
                     >
                         {
@@ -71,11 +85,13 @@ const Player = () => {
                     </button>
                 </div>
 
-                <div className='elative h-full w-300 flex-1 mx-10' ref={waveContainerRef}></div>
+                <span className='color-[#fff] ml-4 text-[0.9em]'>{formattedCurrent}</span>
 
-                <span className='color-[#fff] text-[0.9em]'>{formattedDuration}</span>
+                <div className='h-full w-300 flex-1 mx-10' ref={waveContainerRef}></div>
 
-                <div className='relative flex items-center px-1vw'>
+                <span className='color-[#fff] mr-3 text-[0.9em]'>{formattedDuration}</span>
+
+                <div className='relative flex gap-2 items-center px-1vw'>
                     <button className='flex' onClick={() => setAudioVolume((prev) => ({ ...prev, isMuted: prev.value <= 0 ? true : !prev.isMuted }))}>
                         {audioVolume.isMuted ? <MdVolumeMute /> : <MdVolumeUp />}
                     </button>

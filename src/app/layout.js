@@ -18,7 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <Player />
+        <div className="fixed bottom-0 w-full p-[10px] box-border text-center">
+          <Player />
+        </div>
       </body>
     </html>
   );
