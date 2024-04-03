@@ -1,4 +1,6 @@
 'use client'
+import OTPVerification from "@/components/OTPVerification";
+import ReactOtpInput from "@/components/ReactOtpInput";
 import { lazy, Suspense, useState } from "react";
 
 const KeenSliderContent = lazy(() => import("@/components/KeenSliderContent"));
@@ -9,7 +11,7 @@ const ReactSlick = lazy(() => import("@/components/ReactSlick"));
 
 
 export default function Home() {
-  const [tabState, setTabState] = useState(5)
+  const [tabState, setTabState] = useState(6)
 
   return (
     <main className="h-screen">
@@ -19,6 +21,8 @@ export default function Home() {
         <button className="p-2 border border-red-400 rounded-lg active:bg-red-300 font-bold h-10" onClick={() => { setTabState(2) }}>Wavesurfer</button>
         <button className="p-2 border border-green-400 rounded-lg active:bg-green-300 font-bold h-10" onClick={() => { setTabState(3) }}>Zustand</button>
         <button className="p-2 border border-orange-400 rounded-lg active:bg-orange-300 font-bold h-10" onClick={() => { setTabState(4) }}>Tailwind</button>
+        <button className="p-2 border border-yellow-400 rounded-lg active:bg-yellow-300 font-bold h-10" onClick={() => { setTabState(6) }}>OTP Verification</button>
+        <button className="p-2 border border-blue-400 rounded-lg active:bg-blue-300 font-bold h-10" onClick={() => { setTabState(7) }}>React OTP Input</button>
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
@@ -40,6 +44,12 @@ export default function Home() {
 
         {tabState === 5 &&
           <ReactSlick />
+        }
+        {tabState === 6 &&
+          <OTPVerification />
+        }
+        {tabState === 7 &&
+          <ReactOtpInput />
         }
       </Suspense>
 
