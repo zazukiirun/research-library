@@ -1,4 +1,5 @@
 'use client'
+import ApexChart from "@/components/ApexChart";
 import OTPVerification from "@/components/OTPVerification";
 import ReactOtpInput from "@/components/ReactOtpInput";
 import { lazy, Suspense, useState } from "react";
@@ -11,11 +12,12 @@ const ReactSlick = lazy(() => import("@/components/ReactSlick"));
 
 
 export default function Home() {
-  const [tabState, setTabState] = useState(6)
+  const [tabState, setTabState] = useState(0)
 
   return (
     <main className="h-screen">
       <div className="flex flex-col justify-center gap-3 m-4 md:m-0 md:flex-row">
+        <button className="p-2 border border-indigo-400 rounded-lg active:bg-indigo-300 font-bold h-10" onClick={() => { setTabState(0) }}>Apex Chart</button>
         <button className="p-2 border border-purple-400 rounded-lg active:bg-purple-300 font-bold h-10" onClick={() => { setTabState(1) }}>Keen slider</button>
         <button className="p-2 border border-sky-400 rounded-lg active:bg-sky-300 font-bold h-10" onClick={() => { setTabState(5) }}>React Slick</button>
         <button className="p-2 border border-red-400 rounded-lg active:bg-red-300 font-bold h-10" onClick={() => { setTabState(2) }}>Wavesurfer</button>
@@ -26,6 +28,9 @@ export default function Home() {
       </div>
 
       <Suspense fallback={<div>Loading...</div>}>
+        {tabState === 0 &&
+          <ApexChart />
+        }
         {tabState === 1 &&
           <KeenSliderContent />
         }
